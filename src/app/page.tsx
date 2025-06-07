@@ -6,9 +6,12 @@ import { Suspense } from "react";
 
 export default async function HomePage({
 	searchParams,
-}: { searchParams: { search?: string } }) {
-	const query = searchParams?.search || "";
-
+}: {
+	searchParams: Promise<{ search?: string }>
+}) {
+	const params = await searchParams;
+	const query = params?.search ?? "";
+	
 	return (
 		<div className="min-h-screen space-y-4">
 			<Header />
