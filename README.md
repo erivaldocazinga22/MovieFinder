@@ -1,80 +1,157 @@
-# Next Template App
+# MovieFinder
 
-Este é um template base para aplicações Next.js com diversas ferramentas já configuradas.
+Uma aplicação moderna para buscar e descobrir filmes, desenvolvida com Next.js e estilizada com as cores da Netflix.
+
+## 🎬 Sobre o Projeto
+
+O MovieFinder é uma aplicação web que consome a API do TMDB (The Movie Database) para permitir que os usuários busquem filmes, visualizem informações detalhadas e descubram novos títulos. A interface foi inspirada no design da Netflix, oferecendo uma experiência familiar e intuitiva.
+
+## ✨ Funcionalidades
+
+- 🔍 **Busca de filmes** por título
+- 📱 **Design responsivo** para mobile, tablet e desktop
+- 🎭 **Página de detalhes** com sinopse, gêneros, avaliações e mais
+- 🔥 **Filmes populares** carregados automaticamente
+- ⚡ **Feedback visual** com loading e tratamento de erros
+- 🎨 **Interface moderna** inspirada na Netflix
+- 🖼️ **Imagens otimizadas** com Next.js Image
 
 ## 🚀 Como começar
 
-Clone o repositório:
+### Pré-requisitos
 
+- Node.js 18+ instalado
+- Uma conta no [TMDB](https://www.themoviedb.org/) para obter a API key
+
+### Instalação
+
+1. Clone o repositório:
 ```bash
-git clone https://github.com/erivaldocazinga22/next-template-app
+git clone https://github.com/seu-usuario/moviefinder.git
+cd moviefinder
 ```
 
-Adiciona o teu repositório remoto:
-
+2. Instale as dependências:
 ```bash
-git remote add origin https://github.com/<seu-usuario-do-github>/<nome-do-repositorio>.git
-git branch -M main
-git push -u origin main
+npm install
+# ou
+yarn install
+# ou
+pnpm install
 ```
+
+3. Configure as variáveis de ambiente:
+```bash
+cp .env.example .env.local
+```
+
+4. Adicione sua API key do TMDB no arquivo `.env.local`:
+```env
+NEXT_PUBLIC_TMDB_API_KEY=sua_api_key_aqui
+```
+
+5. Execute o projeto:
+```bash
+npm run dev
+# ou
+yarn dev
+# ou
+pnpm dev
+```
+
+6. Abra [http://localhost:3000](http://localhost:3000) no seu navegador.
 
 ## 🔐 Variáveis de Ambiente
 
-Após clonares o projeto, cria um ficheiro `.env` na raiz e adiciona:
+Crie um arquivo `.env.local` na raiz do projeto com:
 
 ```env
-NEXT_PUBLIC_API_URL=http://localhost:5500 # Aqui vai a URL da tua API para acesso publico no next
-NEXT_API_URL=http://localhost:5500 # Aqui vai a URL da tua API
+NEXT_PUBLIC_TMDB_API_KEY=sua_chave_da_api_tmdb
 ```
 
-## ⚙️ Configurações incluídas
+Para obter uma API key:
+1. Crie uma conta em [https://www.themoviedb.org/](https://www.themoviedb.org/)
+2. Vá para Configurações > API
+3. Solicite uma API key gratuita
+4. Cole a chave no arquivo `.env.local`
 
-Este template já vem pré-configurado com as seguintes ferramentas:
+## 🛠️ Tecnologias Utilizadas
 
-1. ✅ **Testes unitários com [`Vitest`](https://vitest.dev/guide/)**
-2. 🧹 **Linting com [`Biome`](https://biomejs.dev/guides/getting-started/)**
-3. 🔐 **Hooks de pré-commit com [`Husky`](htts://typicode.github.io/husky)**
-   * Validação de mensagens de commit com [`Commitlint`](https://commitlit.js.org/)
-   * Seguindo o padrão [`Conventional Commits`](https://www.conventionalcommits.org/)
-4. ⚙️ **CI/CD pré-configurado com GitHub Actions**
-5. 🔒 **Rotas privadas usando Middleware do Next.js**
-6. 💅 **UI moderna com [`shadcn/ui`](https://ui.shadcn.dev/)**
-7. 🎨 **Estilização com [`Tailwind CSS`](https://tailwindcss.com/docs/installation/framework-guides/nextjs)**
+- **[Next.js 14](https://nextjs.org/)** - Framework React com App Router
+- **[TypeScript](https://www.typescriptlang.org/)** - Tipagem estática
+- **[Tailwind CSS](https://tailwindcss.com/)** - Framework CSS utilitário
+- **[shadcn/ui](https://ui.shadcn.com/)** - Componentes UI modernos
+- **[Lucide React](https://lucide.dev/)** - Ícones
+- **[TMDB API](https://www.themoviedb.org/documentation/api)** - Dados dos filmes
 
-## 🐳 Usar com Docker
-
-Este projeto já vem pronto para ser executado com Docker e Docker Compose.
-
-### 1. Requisitos
-
-* Docker instalado [https://www.docker.com](https://www.docker.com)
-* Docker Compose (v2 ou superior)
-* PNPM está embutido via Corepack, não precisas instalar manualmente
-
-### 2. Build da imagem
-
-```bash
-docker compose build
-```
-
-### 3. Subir o container
-
-```bash
-docker compose up
-```
-
-### 4. Acessar a aplicação
-
-A aplicação estará disponível em:
+## 📁 Estrutura do Projeto
 
 ```
-http://localhost:3000
+moviefinder/
+├── app/
+│   ├── movie/[id]/
+│   │   └── page.tsx          # Página de detalhes do filme
+│   ├── globals.css           # Estilos globais
+│   ├── layout.tsx            # Layout principal
+│   ├── loading.tsx           # Componente de loading
+│   └── page.tsx              # Página inicial
+├── components/
+│   ├── ui/                   # Componentes shadcn/ui
+│   ├── error-message.tsx     # Componente de erro
+│   └── loading-spinner.tsx   # Spinner de carregamento
+├── lib/
+│   └── tmdb.ts              # Funções da API TMDB
+├── types/
+│   └── movie.ts             # Tipos TypeScript
+└── README.md
 ```
 
-### 5. Parar o container
+## 🎨 Design
 
-```bash
-docker compose down
-```
+A aplicação utiliza uma paleta de cores inspirada na Netflix:
+- **Vermelho principal**: #E50914 (Netflix Red)
+- **Fundo**: Preto e cinza escuro
+- **Texto**: Branco e cinza claro
+- **Destaques**: Amarelo para avaliações
 
-> ℹ️ As variáveis de ambiente `NEXT_PUBLIC_API_URL` e `NEXT_API_URL` (definida no `.env`) devem apontar para a tua API — ajusta se necessário antes de buildar.
+## 🚀 Deploy
+
+### Vercel (Recomendado)
+
+1. Faça push do código para o GitHub
+2. Conecte seu repositório no [Vercel](https://vercel.com)
+3. Configure a variável de ambiente `NEXT_PUBLIC_TMDB_API_KEY`
+4. Deploy automático!
+
+### Outras plataformas
+
+O projeto é compatível com qualquer plataforma que suporte Next.js:
+- Netlify
+- Railway
+- Render
+- AWS Amplify
+
+## 🤝 Contribuindo
+
+Contribuições são bem-vindas! Para contribuir:
+
+1. Faça um fork do projeto
+2. Crie uma branch para sua feature (`git checkout -b feature/AmazingFeature`)
+3. Commit suas mudanças (`git commit -m 'Add some AmazingFeature'`)
+4. Push para a branch (`git push origin feature/AmazingFeature`)
+5. Abra um Pull Request
+
+## 📝 Licença
+
+Este projeto está sob a licença MIT. Veja o arquivo [LICENSE](LICENSE) para mais detalhes.
+
+## 🙏 Agradecimentos
+
+- [TMDB](https://www.themoviedb.org/) pelos dados dos filmes
+- [Netflix](https://netflix.com) pela inspiração do design
+- [shadcn](https://twitter.com/shadcn) pelos componentes UI
+- [Vercel](https://vercel.com) pela plataforma de deploy
+
+---
+
+Desenvolvido com ❤️ usando Next.js
